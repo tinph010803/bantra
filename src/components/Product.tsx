@@ -64,12 +64,12 @@ const Product: React.FC = () => {
       {/* Products Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {products.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-sm  transition-shadow duration-300">
             <div className="aspect-square overflow-hidden">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover  transition-transform duration-300"
               />
             </div>
             <div className="p-2 sm:p-3 lg:p-4 text-center">
@@ -87,16 +87,16 @@ const Product: React.FC = () => {
       {/* Banner Section */}
       <div className="relative mt-8 lg:mt-12 rounded-lg overflow-hidden">
         <img
-          src="https://picsum.photos/1200/400?random=50"
+          src="https://demo.thietkewebuytin.vn/test/NhutTan/bantra/assets/slider-1-BJIM3phR.jpg"
           alt="Trà Việt Nam Chất Lượng"
           className="w-full h-48 sm:h-56 md:h-64 lg:h-80 object-cover"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center sm:justify-end px-4 sm:pr-6 lg:pr-16">
+        <div className="absolute inset-0 flex items-center justify-center sm:justify-end px-4 sm:pr-8 lg:pr-16">
           <div className="text-center sm:text-right">
-            <h3 className="text-white text-lg sm:text-xl md:text-2xl lg:text-4xl font-light mb-2 sm:mb-3 lg:mb-4">
+            <h3 className="text-white text-lg sm:text-xl md:text-2xl lg:text-4xl font-light mb-3 sm:mb-4 lg:mb-6 drop-shadow-lg">
               Trà Việt Nam Chất Lượng
             </h3>
-            <button className="bg-orange-400 hover:bg-orange-500 text-white px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-md font-medium transition-colors text-sm sm:text-base">
+            <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-3.5 rounded-md font-medium transition-colors text-sm sm:text-base lg:text-lg shadow-lg">
               Xem tiếp
             </button>
           </div>

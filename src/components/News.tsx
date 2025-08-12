@@ -37,7 +37,7 @@ const News: React.FC = () => {
       {/* News Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {newsData.map((news) => (
-          <article key={news.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          <article key={news.id} className="bg-white rounded-lg overflow-hidden transition-all duration-300">
             <div className="aspect-[4/3] overflow-hidden">
               <img 
                 src={news.image} 

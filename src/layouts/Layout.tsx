@@ -1,11 +1,14 @@
 // src/layouts/Layout.tsx
 import Header from "../components/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const Layout = () => {
+  const location = useLocation();
+  const showSlider = location.pathname === '/';
+
   return (
     <>
-      <Header />
+      <Header showSlider={showSlider} />
       <Outlet />
     </>
   );

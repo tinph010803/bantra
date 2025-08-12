@@ -2,38 +2,17 @@
 
 import type React from "react"
 import { useState } from "react"
-import { FaSearch, FaShoppingCart, FaChevronDown, FaChevronLeft, FaChevronRight, FaBars, FaTimes } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import { FaSearch, FaShoppingCart, FaChevronDown, FaBars, FaTimes } from "react-icons/fa"
+import HeroSlider from "./HeroSlider"
 
-const Header: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+interface HeaderProps {
+  showSlider?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const slides = [
-    {
-      id: 1,
-      image: "https://demo.thietkewebuytin.vn/test/NhutTan/bantra/assets/slider-1-BJIM3phR.jpg?random=1",
-      alt: "Tea plantation landscape",
-    },
-    {
-      id: 2,
-      image: "https://demo.thietkewebuytin.vn/test/NhutTan/bantra/assets/slider-2-D_VXOLAv.jpg?random=2",
-      alt: "Mountain tea fields",
-    },
-
-  ]
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
 
   return (
     <header className="bg-white">
@@ -41,13 +20,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-4 max-w-7xl">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <img 
               src="/pictures/logo_TokyoShop.png" 
               alt="TokyoShop Logo" 
               className="h-12 md:h-16 w-auto"
             />
-          </div>
+          </Link>
 
           {/* Desktop Search Bar and Auth Links */}
           <div className="hidden lg:flex items-center space-x-4">
@@ -98,12 +77,12 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-end space-x-8 py-4">
-            <a href="#" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
+            <Link to="/" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
               Trang chủ
-            </a>
-            <a href="#" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
+            </Link>
+            <Link to="/introduce" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
               Giới thiệu
-            </a>
+            </Link>
             <div
               className="relative"
               onMouseEnter={() => setIsProductDropdownOpen(true)}
@@ -142,9 +121,9 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
-            <a href="#" className="text-gray-600 hover:text-orange-600 transition-colors text-lg cursor-pointer">
+            <Link to="/blog" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
               Blog
-            </a>
+            </Link>
             <a href="#" className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors text-lg cursor-pointer">
               <FaShoppingCart className="text-lg" />
               <span>Giỏ hàng (0)</span>
@@ -155,12 +134,12 @@ const Header: React.FC = () => {
           {isMobileMenuOpen && (
             <div className="lg:hidden border-t border-gray-200">
               <div className="py-4 space-y-4">
-                <a href="#" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
+                <Link to="/" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   Trang chủ
-                </a>
-                <a href="#" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
+                </Link>
+                <Link to="/introduce" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   Giới thiệu
-                </a>
+                </Link>
                 <div className="space-y-2">
                   <button 
                     onClick={() => setIsProductDropdownOpen(!isProductDropdownOpen)}
@@ -198,9 +177,12 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <a href="#" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
+                {/* <a href="#" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   Blog
-                </a>
+                </a> */}
+                <Link to="/blog" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
+                  Blog
+                </Link>
                 <a href="#" className="flex items-center space-x-2 text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   <FaShoppingCart className="text-lg" />
                   <span>Giỏ hàng (0)</span>
@@ -219,48 +201,7 @@ const Header: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero Slider */}
-      <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden rounded-lg mx-2 md:mx-4 mt-4 max-w-7xl container mx-auto">
-        <div className="relative w-full h-full">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img src={slide.image || "/placeholder.svg"} alt={slide.alt} className="w-full h-full object-cover" />
-            </div>
-          ))}
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute cursor-pointer left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1.5 md:p-2 transition-all duration-200"
-          >
-            <FaChevronLeft className="text-gray-700 text-sm md:text-base" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-2 md:right-4 cursor-pointer top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1.5 md:p-2 transition-all duration-200"
-          >
-            <FaChevronRight className="text-gray-700 text-sm md:text-base" />
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-200 ${
-                  index === currentSlide ? "bg-white" : "bg-white bg-opacity-50"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      {showSlider && <HeroSlider />}
     </header>
   )
 }

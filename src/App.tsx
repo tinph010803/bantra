@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import IntroduceHome from "./pages/IntroduceHome";
+import Blog from "./pages/Blog";
 // import IntroducePage from "./pages/IntroducePage";
 import Layout from "./layouts/Layout";
 // import Contact from "./pages/Contact";
@@ -21,6 +23,24 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/introduce" element={<IntroduceHome />} />
+        <Route path="/blog" element={<Blog />} />
+        {/* Uncomment the following lines when the respective components are available */}
+        {/* <Route path="/introduce" element={<IntroducePage />} />
+         <Route path="/contact" element={<Contact />} />
+         <Route path="/services" element={<ServicesPage />} />
+         <Route path="/news/beauty-knowledge" element={<BeautyKnowledge />} />
+         <Route path="/news/service-news" element={<ServiceNews />} />
+         <Route path="/products/natural-cosmetics" element={<ProductNatural />} />
+         <Route path="/products/facial-treatment" element={<FacialTreatment />} />
+         <Route path="/products/body-whitening" element={<ProductFullBody />} />
+         <Route path="/products/weight-loss" element={<LosingWeight />} />
+         <Route path="/register" element={<Register />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/product/:id" element={<ProductDetail />} />
+         <Route path="/cart" element={<ShoppingCart />} />
+         <Route path="/checkout" element={<CheckoutPage />} />
+         <Route path="/forgot-password" element={<ForgotPassword />} /> */}
         {/* <Route path="/introduce" element={<IntroducePage />} />
          <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<ServicesPage />} />
