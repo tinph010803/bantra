@@ -39,10 +39,10 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
               <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
             </div>
             <div className="flex items-center space-x-4 text-gray-600">
-              <a href="#" className="hover:text-green-500 transition-colors text-lg">
+              <a href="/login" className="hover:text-green-500 transition-colors text-lg">
                 Đăng nhập
               </a>
-              <a href="#" className="hover:text-green-500 transition-colors text-lg">
+              <a href="/signup" className="hover:text-green-500 transition-colors text-lg">
                 Đăng ký
               </a>
             </div>
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
           <div className="lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-green-500 transition-colors p-2"
+              className="text-gray-600  transition-colors p-2"
             >
               {isMobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
             </button>
@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
             <input
               type="text"
               placeholder="Tìm kiếm"
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-base"
+              className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent text-base"
             />
             <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
           </div>
@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
       </div>
 
       {/* Navigation Menu */}
-      <nav className="bg-white border-t border-gray-200">
+      <nav className="bg-white border-t ">
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-end space-x-8 py-4">
@@ -93,7 +93,11 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
                 <FaChevronDown className="text-sm" />
               </button>
               {isProductDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                <div 
+                  className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+                  onMouseEnter={() => setIsProductDropdownOpen(true)}
+                  onMouseLeave={() => setIsProductDropdownOpen(false)}
+                >
                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà cụ
                   </a>

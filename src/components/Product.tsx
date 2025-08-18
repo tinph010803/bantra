@@ -96,7 +96,7 @@ const Product: React.FC = () => {
             <h3 className="text-white text-lg sm:text-xl md:text-2xl lg:text-4xl font-light mb-3 sm:mb-4 lg:mb-6 drop-shadow-lg">
               Trà Việt Nam Chất Lượng
             </h3>
-            <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-3.5 rounded-md font-medium transition-colors text-sm sm:text-base lg:text-lg shadow-lg">
+            <button className="bg-orange-400 hover:bg-orange-500 text-white px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-3.5 rounded-md font-medium transition-colors text-sm sm:text-base lg:text-lg shadow-lg cursor-pointer">
               Xem tiếp
             </button>
           </div>

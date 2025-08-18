@@ -42,7 +42,7 @@ const News: React.FC = () => {
               <img 
                 src={news.image} 
                 alt={news.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover transition-transform duration-300"
               />
             </div>
             <div className="p-4 sm:p-5 lg:p-6 text-left">

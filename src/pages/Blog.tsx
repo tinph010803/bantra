@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../components/Footer';
 
 const Blog: React.FC = () => {
   // Sample blog data
@@ -109,9 +108,6 @@ const Blog: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

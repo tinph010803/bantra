@@ -2,8 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import IntroduceHome from "./pages/IntroduceHome";
 import Blog from "./pages/Blog";
+import SignUp from "./pages/SignUp";
 // import IntroducePage from "./pages/IntroducePage";
 import Layout from "./layouts/Layout";
+import Login from "./components/Login";
 // import Contact from "./pages/Contact";
 // import ServicesPage from "./pages/ServicesPage";
 // import BeautyKnowledge from "./pages/BeautyKnowledge";
@@ -25,6 +27,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/introduce" element={<IntroduceHome />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* Uncomment the following lines when the respective components are available */}
         {/* <Route path="/introduce" element={<IntroducePage />} />
          <Route path="/contact" element={<Contact />} />
