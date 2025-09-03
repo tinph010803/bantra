@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { FaSearch, FaShoppingCart, FaChevronDown, FaBars, FaTimes } from "react-icons/fa"
 import HeroSlider from "./HeroSlider"
@@ -13,6 +13,21 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsProductDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <header className="bg-white">
@@ -21,9 +36,9 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/pictures/logo_TokyoShop.png" 
-              alt="TokyoShop Logo" 
+            <img
+              src="/pictures/logo_TokyoShop.png"
+              alt="TokyoShop Logo"
               className="h-12 md:h-16 w-auto"
             />
           </Link>
@@ -73,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
       </div>
 
       {/* Navigation Menu */}
-      <nav className="bg-white border-t ">
+      <nav className="bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-end space-x-8 py-4">
@@ -84,44 +99,46 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
               Giới thiệu
             </Link>
             <div
+              ref={dropdownRef}
               className="relative"
-              onMouseEnter={() => setIsProductDropdownOpen(true)}
-              onMouseLeave={() => setIsProductDropdownOpen(false)}
             >
-              <button className="flex items-center space-x-1 text-orange-500 hover:text-orange-600 transition-colors text-lg cursor-pointer">
-                <span>Sản phẩm</span>
-                <FaChevronDown className="text-sm" />
+              <button
+                className="flex items-center space-x-1 text-orange-500 hover:text-orange-600 transition-colors text-lg cursor-pointer"
+                onClick={() => setIsProductDropdownOpen(!isProductDropdownOpen)}
+              >
+                <Link to="/products" className="text-orange-500">
+                  Sản phẩm
+                </Link>
+                <FaChevronDown className={`text-sm transition-transform ${isProductDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isProductDropdownOpen && (
-                <div 
+                <div
                   className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
-                  onMouseEnter={() => setIsProductDropdownOpen(true)}
-                  onMouseLeave={() => setIsProductDropdownOpen(false)}
                 >
-                  <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà cụ
-                  </a>
-                  <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà Nhật Bản
-                  </a>
-                  <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà Việt Nam
-                  </a>
-                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà Anh Quốc
-                  </a>
-                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Trà Trung Quốc
-                  </a>
-                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Sản phẩm nổi bật
-                  </a>
-                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Sản phẩm bán chạy
-                  </a>
-                   <a href="#" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
+                  </Link>
+                  <Link to="/products" className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-green-500 text-base">
                     Sản phẩm khuyến mãi
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -145,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
                   Giới thiệu
                 </Link>
                 <div className="space-y-2">
-                  <button 
+                  <button
                     onClick={() => setIsProductDropdownOpen(!isProductDropdownOpen)}
                     className="flex items-center justify-between w-full text-orange-500 hover:text-orange-600 transition-colors text-lg py-2"
                   >

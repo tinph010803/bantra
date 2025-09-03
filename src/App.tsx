@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import IntroduceHome from "./pages/IntroduceHome";
 import Blog from "./pages/Blog";
 import SignUp from "./pages/SignUp";
+import ProductPage from "./pages/ProductPage";
+import ProductDetail from "./pages/ProductDetail";
 // import IntroducePage from "./pages/IntroducePage";
 import Layout from "./layouts/Layout";
 import Login from "./components/Login";
@@ -29,6 +31,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         {/* Uncomment the following lines when the respective components are available */}
         {/* <Route path="/introduce" element={<IntroducePage />} />
          <Route path="/contact" element={<Contact />} />
