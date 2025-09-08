@@ -1,11 +1,14 @@
 import type React from "react"
 import { useState } from "react"
 import { Link, useParams } from "react-router"
+import { useCart } from "../context/CartContext"
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>()
     const [quantity, setQuantity] = useState(1)
     const [activeTab, setActiveTab] = useState("mo-ta")
+    const [showModal, setShowModal] = useState(false)
+    const { addToCart } = useCart();
 
     // Sample product data - in real app this would come from API/context
     const products = [
@@ -196,17 +199,25 @@ const ProductDetail: React.FC = () => {
 
                             <div className="space-y-3">
                                 <button 
-                                    className="w-full py-3 text-white font-medium rounded transition-colors duration-200"
+                                    className="w-full py-3 text-white font-medium rounded transition-colors duration-200 cursor-pointer"
                                     style={{ backgroundColor: 'rgb(255, 165, 52)' }}
                                     onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = 'rgb(235, 145, 32)')}
                                     onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = 'rgb(255, 165, 52)')}
+                                    onClick={() => {
+                                        addToCart({
+                                            id: product.id,
+                                            name: product.name,
+                                            price: product.price,
+                                            image: product.image
+                                        }, quantity);
+                                        setShowModal(true);
+                                        setTimeout(() => setShowModal(false), 2000);
+                                    }}
                                 >
-                                    
-                                     Thêm vào giỏ hàng
+                                    Thêm vào giỏ hàng
                                 </button>
-                                
                                 <button 
-                                    className="w-full py-3 text-white font-medium rounded transition-colors duration-200"
+                                    className="w-full py-3 text-white font-medium rounded transition-colors duration-200 cursor-pointer"
                                     style={{ backgroundColor: 'rgb(154, 196, 96)' }}
                                     onMouseEnter={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = 'rgb(134, 176, 76)')}
                                     onMouseLeave={(e) => ((e.target as HTMLButtonElement).style.backgroundColor = 'rgb(154, 196, 96)')}
@@ -286,6 +297,26 @@ const ProductDetail: React.FC = () => {
                     )}
                 </div>
             </div>
+        {/* Modal đặt hàng thành công */}
+        {showModal && (
+            <div className="fixed left-1/2 top-1/2 z-50" style={{ transform: 'translate(-50%, -50%)' }}>
+                <div className="bg-white rounded-lg shadow-lg px-8 py-6 flex flex-col items-center relative min-w-[320px] border border-gray-200">
+                    <button
+                        className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-xl"
+                        onClick={() => setShowModal(false)}
+                    >
+                        ×
+                    </button>
+                    <div className="mb-4">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="22" stroke="#9AC460" strokeWidth="4" fill="#fff" />
+                            <path d="M16 24l6 6 10-10" stroke="#9AC460" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </div>
+                    <div className="text-lg font-medium text-gray-700 mb-2">Đã đặt hàng thành công</div>
+                </div>
+            </div>
+        )}
         </div>
     )
 }

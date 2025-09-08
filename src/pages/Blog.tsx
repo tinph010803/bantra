@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Blog: React.FC = () => {
   // Sample blog data
@@ -30,12 +31,12 @@ const Blog: React.FC = () => {
   ];
 
   return (
-    <div className="blog-page" style={{ backgroundColor: '#fff', minHeight: '100vh' }}>
+    <div className="blog-page" style={{ backgroundColor: '#fff' }}>
       {/* Breadcrumb */}
       <div className="breadcrumb" style={{ padding: '15px 0' }}>
         <div className="container mx-auto px-4">
           <nav className="flex items-center space-x-2 text-sm" style={{ color: '#999' }}>
-            <a href="/" style={{ color: '#999', textDecoration: 'none' }}>Trang chủ</a>
+            <Link to="/" style={{ color: '#999', textDecoration: 'none' }}>Trang chủ</Link>
             <span>›</span>
             <span style={{ color: '#666' }}>Tin tức</span>
           </nav>
@@ -61,16 +62,19 @@ const Blog: React.FC = () => {
               <div key={post.id} className="blog-post-card">
                 {/* Post image */}
                 <div style={{ marginBottom: '15px' }}>
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    style={{
-                      width: '100%',
-                      height: '200px',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
+                  <Link to={`/blog/${post.id}`}>
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      style={{
+                        width: '100%',
+                        height: '200px',
+                        objectFit: 'cover',
+                        display: 'block',
+                        cursor: 'pointer'
+                      }}
+                    />
+                  </Link>
                 </div>
                 
                 {/* Post content */}
@@ -82,7 +86,18 @@ const Blog: React.FC = () => {
                     marginBottom: '8px',
                     lineHeight: '1.4'
                   }}>
-                    {post.title}
+                    <Link 
+                      to={`/blog/${post.id}`}
+                      style={{ 
+                        color: '#333', 
+                        textDecoration: 'none',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#8B4513'}
+                      onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#333'}
+                    >
+                      {post.title}
+                    </Link>
                   </h3>
                   
                   <div style={{ 
@@ -98,7 +113,8 @@ const Blog: React.FC = () => {
                     lineHeight: '1.6', 
                     color: '#666',
                     textAlign: 'justify',
-                    marginBottom: '0'
+                    marginBottom: '0',
+                    fontWeight: 'bold'
                   }}>
                     {post.excerpt}
                   </p>

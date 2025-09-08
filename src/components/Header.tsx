@@ -4,6 +4,7 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { FaSearch, FaShoppingCart, FaChevronDown, FaBars, FaTimes } from "react-icons/fa"
+import { useCart } from "../context/CartContext"
 import HeroSlider from "./HeroSlider"
 
 interface HeaderProps {
@@ -29,6 +30,7 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
     }
   }, [])
 
+  const { cartCount } = useCart();
   return (
     <header className="bg-white">
       {/* Top Header */}
@@ -145,10 +147,10 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
             <Link to="/blog" className="text-gray-600 hover:text-orange-600 transition-colors text-lg">
               Blog
             </Link>
-            <a href="#" className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors text-lg cursor-pointer">
+            <Link to="/cart" className="flex items-center space-x-1 text-gray-600 hover:text-orange-600 transition-colors text-lg cursor-pointer">
               <FaShoppingCart className="text-lg" />
-              <span>Giỏ hàng (0)</span>
-            </a>
+              <span>Giỏ hàng ({cartCount})</span>
+            </Link>
           </div>
 
           {/* Mobile Navigation */}
@@ -204,10 +206,10 @@ const Header: React.FC<HeaderProps> = ({ showSlider = true }) => {
                 <Link to="/blog" className="block text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   Blog
                 </Link>
-                <a href="#" className="flex items-center space-x-2 text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
+                <Link to="/cart" className="flex items-center space-x-2 text-gray-600 hover:text-orange-600 transition-colors text-lg py-2">
                   <FaShoppingCart className="text-lg" />
-                  <span>Giỏ hàng (0)</span>
-                </a>
+                  <span>Giỏ hàng ({cartCount})</span>
+                </Link>
                 <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
                   <a href="#" className="block text-gray-600 hover:text-green-500 transition-colors text-lg py-2">
                     Đăng nhập

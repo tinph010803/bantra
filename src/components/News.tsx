@@ -1,8 +1,10 @@
 "use client"
 
 import type React from "react"
+import { useNavigate } from "react-router-dom"
 
 const News: React.FC = () => {
+  const navigate = useNavigate()
   const newsData = [
     {
       id: 1,
@@ -27,6 +29,10 @@ const News: React.FC = () => {
     }
   ]
 
+  const handleNewsClick = (newsId: number) => {
+    navigate(`/blog/${newsId}`)
+  }
+
   return (
     <section className="container mx-auto px-4 py-0 max-w-7xl">
       {/* Section Title */}
@@ -37,7 +43,11 @@ const News: React.FC = () => {
       {/* News Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {newsData.map((news) => (
-          <article key={news.id} className="bg-white rounded-lg overflow-hidden transition-all duration-300">
+          <article 
+            key={news.id} 
+            className="bg-white rounded-lg overflow-hidden transition-all duration-300 cursor-pointer "
+            onClick={() => handleNewsClick(news.id)}
+          >
             <div className="aspect-[4/3] overflow-hidden">
               <img 
                 src={news.image} 
@@ -46,7 +56,7 @@ const News: React.FC = () => {
               />
             </div>
             <div className="p-4 sm:p-5 lg:p-6 text-left">
-              <h3 className="text-gray-800 font-medium mb-2 sm:mb-3 text-base sm:text-lg leading-tight hover:text-orange-500 transition-colors duration-300 cursor-pointer line-clamp-2">
+              <h3 className="text-gray-800 font-medium mb-2 sm:mb-3 text-base sm:text-lg leading-tight hover:text-orange-500 transition-colors duration-300 line-clamp-2">
                 {news.title}
               </h3>
               <div className="text-gray-500 text-xs sm:text-sm">
